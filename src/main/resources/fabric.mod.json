@@ -20,7 +20,10 @@
 		],
 		"fabric-datagen": [
 			"net.mog.schizophreniacreeper.SchizophreniaCreeperDataGenerator"
-		]
+		],
+        "client": [
+            "net.mog.schizophreniacreeper.SchizophreniaCreeperClient"
+        ]
 	},
 	"mixins": [
 		"schizophrenia-creeper.mixins.json"

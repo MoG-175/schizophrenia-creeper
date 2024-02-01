@@ -8,4 +8,9 @@ public class SchizoCreeperEntity extends CreeperEntity {
     public SchizoCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {
         super(entityType, world);
     }
+
+    @Override
+    public boolean shouldRender(double distance) {
+        return super.shouldRender(distance);
+    }
 }
