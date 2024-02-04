@@ -1,6 +1,5 @@
 package net.mog.schizophreniacreeper.effects;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -31,15 +30,13 @@ public class SchizophreniaStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity) {
-            Entity SchizoCreeperEntity = new SchizoCreeperEntity(EntityType.CREEPER, entity.getWorld());
-            int chance = 1_000;
-//            CommandManager commandManager = Objects.requireNonNull(entity.getServer()).getCommandManager();
-            if (rn.nextInt(0, chance) == 0) {
-                entity.getWorld().spawnEntity(SchizoCreeperEntity);
-                SchizoCreeperEntity.updatePosition(entity.getX(), entity.getY(), entity.getZ());
-//                commandManager.execute(MinecraftServer.,"effect give " + SchizoCreeperEntity.getUuidAsString() + " minecraft:weakness infinite 255");
-                SchizophreniaCreeper.LOGGER.info("YES");
-            }
+            SchizoCreeperEntity SchizoCreeperEntity = new SchizoCreeperEntity(EntityType.CREEPER, entity.getWorld());
+            SchizoCreeperEntity.Owner = entity.getUuid();
+            int chance = 500;
+            if (rn.nextInt(0, chance) != 0) return;
+            entity.getWorld().spawnEntity(SchizoCreeperEntity);
+            SchizoCreeperEntity.updatePosition(entity.getX() - 1d, entity.getY(), entity.getZ() - 1d);
+            SchizophreniaCreeper.LOGGER.info("Spawned Schizophrenia Creeper through Effect");
         }
     }
 }
